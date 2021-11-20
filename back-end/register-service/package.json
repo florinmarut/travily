@@ -1,0 +1,12 @@
+{
+  "name": "register-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Florin Marut",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3-rc.0",
+    "nodemon": "^2.0.14"
+  }
+}
