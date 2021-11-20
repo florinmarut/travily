@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
 })
 
 const register = (req, res) => {
-    const { email, firstname, surname, description, password } = req.body;
+    const { email, firstName, surname, description, password } = req.body;
     connection.query(
-        `INSERT INTO users(email, firstname, surname, description, password) VALUES('${email}', '${firstname}', '${surname}', '${description}', '${password}');`,
+        `INSERT INTO users(email, firstname, surname, description, password) VALUES('${email}', '${firstName}', '${surname}', '${description}', '${password}');`,
         (err, results, fields) => {
             if(err)
                res.status(400).send(err);

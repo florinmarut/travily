@@ -2,12 +2,18 @@ const express = require('express')
 
 // import controller
 const { login } = require('../controllers/login-controller')
+const { register } = require('../controllers/register-controller')
 const { listPosts, getPost, deletePost, updatePost, createPost } = require('../controllers/posts-controller');
 const { listComments, getComment, deleteComment, createComment, updateComment } = require('../controllers/comments-controller');
 const { listLocations, getLocation, deleteLocation, createLocation, updateLocation } = require('../controllers/locations-controller');
 
 // import router
 const router = express.Router()
+const cors = require('cors');
+
+router.use(cors());
+
+router.post('/register', register);
 
 router.post('/login', login);
 
