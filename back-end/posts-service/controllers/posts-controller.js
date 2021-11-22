@@ -10,8 +10,11 @@ const connection = mysql.createConnection({
 })
 
 const createPost = (req, res) => {
+  console.log(req.body.user_id);
+  console.log(req.body.location);
+  console.log(req.body.content);
     connection.query(
-        `INSERT INTO posts (user_id, location_id, content, date, votes) VALUES('${req.body.user_id}', '${req.body.location_id}', '${req.body.content}', NOW(), 0);`,
+        `INSERT INTO posts (user_id, content, date, votes, location) VALUES('${req.body.user_id}', '${req.body.content}', NOW(), 0, '${req.body.location}');`,
         (err, results, fields) => {
             if(err)
                res.status(400).send(err);
@@ -23,7 +26,7 @@ const createPost = (req, res) => {
 
 const listPosts = (req, res) => {
     connection.query(
-      'SELECT id, user_id, location_id, content, date, update_date, votes FROM posts',
+      'SELECT * FROM posts',
       (err, results, fields) => {
           if(err)
             res.status(500).send(err);
@@ -35,10 +38,22 @@ const listPosts = (req, res) => {
 
 const getPost = (req, res) => {
     connection.query(
-        `SELECT id, user_id, location_id, content, date, update_date, votes FROM posts where id=${req.params.id}`,
+        `SELECT * FROM posts where id=${req.params.id}`,
         (err, results, fields) => {
             if(err)
                res.status(500).send(err);
+            else
+               res.status(200).send(results);
+        }
+    )
+}
+
+const listPostsByUserId = (req, res) => {
+    connection.query(
+        `SELECT * FROM posts where user_id=${req.params.user_id}`,
+        (err, results, fields) => {
+            if(err)
+              res.status(500).send(err);
             else
                res.status(200).send(results);
         }
@@ -88,4 +103,4 @@ const downvote = (req, res) => {
     })
 }
 
-module.exports = { listPosts, getPost, deletePost, updatePost, createPost, upvote, downvote }
+module.exports = { listPosts, getPost, deletePost, updatePost, createPost, upvote, downvote, listPostsByUserId }

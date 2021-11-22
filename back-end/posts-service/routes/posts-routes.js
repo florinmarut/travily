@@ -3,7 +3,7 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 
 // import controller
-const { listPosts, getPost, deletePost, updatePost, createPost, upvote, downvote } = require('../controllers/posts-controller')
+const { listPosts, getPost, deletePost, updatePost, createPost, upvote, downvote, listPostsByUserId } = require('../controllers/posts-controller')
 
 router.use((req, res, next) => {
     const bearerHeader = req.headers['authorization'];
@@ -32,6 +32,7 @@ router.use((req, res, next) => {
 
 router.route('/:id').get(getPost).put(updatePost).delete(deletePost);
 router.route('/').post(createPost).get(listPosts);
+router.get('/user/:user_id', listPostsByUserId);
 router.put('/upvote/:id', upvote);
 router.put('/downvote/:id', downvote);
 

@@ -88,4 +88,4 @@ const downvote = (req, res) => {
     })
 }
 
-module.exports = { listComments, getComment, deleteComment, updateComment, createComment, upvote, downvote }
+module.exports = { listComments, getComment, deleteComment, updateComment, createComment, upvote, downvote, listPostsByUserId }

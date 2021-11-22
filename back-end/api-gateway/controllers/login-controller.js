@@ -14,8 +14,8 @@ const signToken = (req, res, object) => {
 const login = (req, res) => {
     const { email, password } = req.body;
     axios.post('http://localhost:4006/login', {
-        email: req.body.email,
-        password: req.body.password
+        email: email,
+        password: password
       })
       .then((response) => {
         signToken(req, res, response.data);

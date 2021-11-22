@@ -1,5 +1,6 @@
 // get the client
 const mysql = require('mysql2')
+const crypto = require('crypto')
 
 // create the connection to database
 const connection = mysql.createConnection({

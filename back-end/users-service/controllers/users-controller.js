@@ -46,14 +46,14 @@ const deleteUser = (req, res) => {
 }
 
 const updateUser = (req, res) => {
-    // connection.query(`UPDATE users SET `,
-    // (err, results, fields) => {
-    //     if(err)
-    //         res.status(500).send(err);
-    //     else
-    //         res.sendStatus(200);
-    // }
-    // )
+    connection.query(`UPDATE users SET firstName='${req.body.firstName}', surname='${req.body.surname}', description='${req.body.description}' WHERE id=${req.params.id}`,
+    (err, results, fields) => {
+        if(err)
+            res.status(500).send(err);
+        else
+            res.sendStatus(200);
+    }
+    )
 }
 
 module.exports = { listUsers, getUser, deleteUser, updateUser }

@@ -16,17 +16,38 @@ export const Login = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        axios.post('http://localhost:5000/login', {
-        email: email,
-        password: password
-      })
-      .then((response) => {
-        localStorage.setItem('authToken', response.data);
-        alert('Ok');
-      })
-      .catch((error) => {
-        alert(error);
-      });
+                axios.post('http://localhost:5000/login', {
+                email: email,
+                password: password
+                })
+                .then((response) => {
+                localStorage.setItem('authToken', response.data);
+                alert('Ok');
+                })
+                .catch((error) => {
+                alert(error);
+                });
+
+        // bcrypt.genSalt(saltRounds, (err, salt) => {
+        //     bcrypt.hash(myPlaintextPassword, salt, (err, hash) => {
+        //         setPassword(hash);
+        //         setRepeatedPassword(hash);
+
+        //         event.preventDefault();
+
+        //         axios.post('http://localhost:5000/login', {
+        //         email: email,
+        //         password: password
+        //         })
+        //         .then((response) => {
+        //         localStorage.setItem('authToken', response.data);
+        //         alert('Ok');
+        //         })
+        //         .catch((error) => {
+        //         alert(error);
+        //         });
+        //     });
+        // });
       };
 
     return (

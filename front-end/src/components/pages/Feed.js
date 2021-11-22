@@ -2,6 +2,7 @@ import axios from 'axios';
 import PostsList from '../PostsList';
 import { useEffect, useState } from 'react';
 import  { Navigate  } from 'react-router-dom'
+import PostForm from '../PostForm';
 
 export const Feed = () => {
     const authToken = localStorage.getItem('authToken');
@@ -26,6 +27,7 @@ export const Feed = () => {
 
     return (
         <div>
+            <PostForm />
             <PostsList posts={posts}/>
         </div>
     )

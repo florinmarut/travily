@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export const SignUp = () => {
+    const saltRounds = 10;
+
     const [firstName, setFirstName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
@@ -36,19 +38,42 @@ export const SignUp = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        axios.post('http://localhost:5000/register', {
-        firstName: firstName,
-        surname: surname,
-        email: email,
-        description: description,
-        password: password
-      })
-      .then((response) => {
-        alert(response.data);
-      })
-      .catch((error) => {
-        alert(error);
-      });
+                axios.post('http://localhost:5000/register', {
+                firstName: firstName,
+                surname: surname,
+                email: email,
+                description: description,
+                password: password
+                })
+                .then((response) => {
+                alert(response.data);
+                })
+                .catch((error) => {
+                      alert(error);
+                });
+
+        // bcrypt.genSalt(saltRounds, (err, salt) => {
+        //     bcrypt.hash(password, salt, (err, hash) => {
+        //         setPassword(hash);
+        //         setRepeatedPassword(hash);
+
+        //         event.preventDefault();
+
+        //         axios.post('http://localhost:5000/register', {
+        //         firstName: firstName,
+        //         surname: surname,
+        //         email: email,
+        //         description: description,
+        //         password: password
+        //         })
+        //         .then((response) => {
+        //         alert(response.data);
+        //         })
+        //         .catch((error) => {
+        //               alert(error);
+        //         });
+        //     });
+        // });
       };
 
     return (
