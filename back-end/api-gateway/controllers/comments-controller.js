@@ -2,17 +2,18 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken')
 
 const createComment = (req, res) => {
+    const {user_id, post_id, content} = req.body;
     axios({
     method: 'post',
     url: 'http://localhost:4005/comments',
     headers: {
     authorization: req.headers['authorization'],
+    },
     data: {
-        user_id: req.body.user_id,
-        post_id: req.body.post_id,
-        content: req.body.content
-    }
-    }
+      user_id: user_id,
+      post_id: post_id,
+      content: content
+  }
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -88,4 +89,20 @@ const listComments = (req, res) => {
       });
 }
 
-module.exports = { listComments, getComment, deleteComment, createComment, updateComment };
+const listCommentsByPostId = (req, res) => {
+  axios({
+   method: 'get',
+  url: `http://localhost:4005/comments/post/${req.params.post_id}`,
+  headers: {
+  authorization: req.headers['authorization']
+  }
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      res.status(401).json(error);
+    });
+}
+
+module.exports = { listComments, getComment, deleteComment, createComment, updateComment, listCommentsByPostId };

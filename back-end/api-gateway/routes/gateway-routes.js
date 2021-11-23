@@ -4,7 +4,7 @@ const express = require('express')
 const { login } = require('../controllers/login-controller')
 const { register } = require('../controllers/register-controller')
 const { listPosts, getPost, deletePost, updatePost, createPost, listPostsByUserId } = require('../controllers/posts-controller');
-const { listComments, getComment, deleteComment, createComment, updateComment } = require('../controllers/comments-controller');
+const { listComments, getComment, deleteComment, createComment, updateComment, listCommentsByPostId } = require('../controllers/comments-controller');
 const { listLocations, getLocation, deleteLocation, createLocation, updateLocation } = require('../controllers/locations-controller');
 const { listUsers, getUser, deleteUser, updateUser, getUserByUserName } = require('../controllers/users-controller');
 
@@ -23,6 +23,7 @@ router.route('/posts/:id').get(getPost).delete(deletePost).put(updatePost);
 router.get('/posts/user/:user_id', listPostsByUserId);
 
 router.route('/comments').get(listComments).post(createComment);
+router.get('/comments/post/:post_id', listCommentsByPostId);
 router.route('/comments/:id').get(getComment).delete(deleteComment).put(updateComment);
 
 router.route('/locations').get(listLocations).post(createLocation);

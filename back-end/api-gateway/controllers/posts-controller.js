@@ -86,13 +86,11 @@ const listPosts = (req, res) => {
         res.status(200).send(response.data);
       })
       .catch((error) => {
-        console.log(error);
         res.status(401).json(error);
       });
 }
 
 const listPostsByUserId = (req, res) => {
-  console.log(req.params.user_id);
   axios({
    method: 'get',
   url: `http://localhost:4003/posts/user/${req.params.user_id}`,

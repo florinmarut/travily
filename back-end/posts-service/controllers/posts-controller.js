@@ -10,9 +10,6 @@ const connection = mysql.createConnection({
 })
 
 const createPost = (req, res) => {
-  console.log(req.body.user_id);
-  console.log(req.body.location);
-  console.log(req.body.content);
     connection.query(
         `INSERT INTO posts (user_id, content, date, votes, location) VALUES('${req.body.user_id}', '${req.body.content}', NOW(), 0, '${req.body.location}');`,
         (err, results, fields) => {

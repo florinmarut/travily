@@ -10,11 +10,13 @@ const connection = mysql.createConnection({
 })
 
 const createComment = (req, res) => {
+    const {user_id, post_id, content} = req.body;
     connection.query(
-        `INSERT INTO comments (user_id, post_id, content, votes, date) VALUES('${req.body.user_id}', '${req.body.post_id}', '${req.body.content}', 0, NOW());`,
+        `INSERT INTO comments (user_id, post_id, content, votes, date) VALUES('${user_id}', '${post_id}', '${content}', 0, NOW());`,
         (err, results, fields) => {
             if(err)
-               res.status(400).send(err);
+               console.log(err);
+            //    res.status(400).send(err);
             else
                res.sendStatus(200);
         }
@@ -24,6 +26,18 @@ const createComment = (req, res) => {
 const listComments = (req, res) => {
     connection.query(
       'SELECT id, user_id, post_id, content, date, update_date, votes FROM comments',
+      (err, results, fields) => {
+          if(err)
+            res.status(500).send(err);
+          else
+            res.status(200).send(results);
+      }
+    );
+}
+
+const listCommentsByPostId = (req, res) => {
+    connection.query(
+      `SELECT * FROM comments WHERE post_id=${req.params.post_id}`,
       (err, results, fields) => {
           if(err)
             res.status(500).send(err);
@@ -88,4 +102,4 @@ const downvote = (req, res) => {
     })
 }
 
-module.exports = { listComments, getComment, deleteComment, updateComment, createComment, upvote, downvote, listPostsByUserId }
+module.exports = { listComments, getComment, deleteComment, updateComment, createComment, upvote, downvote, listCommentsByPostId }
