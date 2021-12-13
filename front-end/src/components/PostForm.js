@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 
 export const PostForm = () => {
     const ACCESS_TOKEN = '39a9d8fddd9c77b6fe1639b79a28df866832c12904a71e55bf83e3f8ccdd898209e5f64301f6650e1a2cb0f7320fc760d528ea09aca2c0ee9643a1dfab7c67d7';
