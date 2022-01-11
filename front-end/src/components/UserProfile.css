@@ -1,0 +1,17 @@
+.container-profile {
+  margin-top: 0px;
+  margin: auto;
+  justify-content: center;
+  width: 50%;
+  align-items: center;
+}
+
+.display-name {
+  height: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.display-description {
+  text-align: center;
+}

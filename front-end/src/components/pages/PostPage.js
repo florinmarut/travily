@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import CommentsList from '../CommentsList';
 import CommentForm from '../CommentForm';
 import axios from 'axios';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import '../PostPage.css';
 
 export const PostPage = () => {
     const { postId } = useParams();
@@ -35,14 +38,23 @@ export const PostPage = () => {
     }, []);
 
     return (
-        <div>
+      <div className='no1-container'>
+        <div className='no2-container'>
+           <div>
+          <Card>
+            <CardContent>
             <p>Location: {location}</p>
             <p>Content: {content}</p>
             <p>Created at: {date}</p>
             <p>Updated at: {updateDate}</p>
+            </CardContent>
+          </Card>
             <CommentForm postId={postId}/>
             <CommentsList postId={postId}/>
         </div>
+        </div>
+      </div>
+       
     )
 }
 
